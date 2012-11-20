@@ -1,0 +1,56 @@
+body {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.box {
+    width: 800px;
+    height: 350px;
+    margin: 0 auto;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    background-color: rgba(0,0,0,0.85);
+    background: url(../img/dotted-dark-overlay-bg.png);
+}
+
+#main p {
+    color: #EBEBEB !important;
+    font-size: 2em;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.75);
+}
+
+#main h1 {
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.75);
+    color: #EBEBEB !important;
+    font-size: 3em;
+}
+
+#main-content {
+    position: relative;
+    margin: 0 auto;
+    width: 750px;
+    height: 200px;
+    left: 30px;
+    top: 100px;
+}
+
+#cad-span {
+    color: white !important;
+    text-decoration: underline;
+    font-size: 1.2em;
+    margin-left: 10px;
+}
+
+.footer-box {
+    background: rgba(0, 0, 0, 0.8);
+    width: 253px;
+    height: 170px;
+}
+
+#footer {
+    position: relative;
+    margin-left: 160px;
+    bottom: 30px;
+}
+
