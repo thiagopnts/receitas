@@ -6,10 +6,15 @@ define(function(require) {
     require('modals');
 
     var Index = Backbone.View.extend({
+        initialize: function() {
+            this.topbar = new Topbar();
+            this.content = new Content();
+            this.footer = new Footer();
+        },
         render: function() {
-            new Topbar().render();
-            new Content().render();
-            new Footer().render();
+            this.topbar.render();
+            this.content.render();
+            this.footer.render();
         }
 
     });
