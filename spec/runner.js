@@ -32,6 +32,7 @@ require.config({
 
 define(function(require) {
     require('spec/views/index_spec');
+    require('spec/models/signup_spec');
 
     jasmine.getEnv().addReporter(new jasmine.HtmlReporter());
     jasmine.getEnv().execute();

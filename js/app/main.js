@@ -38,11 +38,12 @@ requirejs.config({
 
 (function() {
     define(function(require) {
+        require('jquery');
+        var Router =  require('router');
         $(document).ready(function() {
-        $('body').css('background', 'url(img/bg'+Math.floor(Math.random()*10) +".jpg) no-repeat center center fixed");
+            $('body').css('background', 'url(img/bg'+Math.floor(Math.random()*10) +".jpg) no-repeat center center fixed");
+            var App = new Router();
+            Backbone.history.start({pushState: true});
         });
-        var Index = require('views/index');
-        var index = new Index();
-        index.render();
     });
 })();
