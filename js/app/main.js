@@ -17,11 +17,18 @@ requirejs.config({
         'text': '../vendor/text',
         'mediator': 'mediator',
         'handlebars': '../vendor/handlebars',
-        'modals': '../vendor/bootstrap-modal'
+        'modals': '../vendor/bootstrap-modal',
+        'cookie': '../vendor/jquery.cookie'
     },
     shim: {
+        'models': {
+            deps: ['backbone']
+        },
         'jquery': {
             exports: '$'
+        },
+        'cookie': {
+            deps: ['jquery']
         },
         'underscore': {
             exports: '_'
@@ -43,7 +50,7 @@ requirejs.config({
         $(document).ready(function() {
             $('body').css('background', 'url(img/bg'+Math.floor(Math.random()*10) +".jpg) no-repeat center center fixed");
             var App = new Router();
-            Backbone.history.start({pushState: true});
+            Backbone.history.start({pushState: false});
         });
     });
 })();

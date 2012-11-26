@@ -15,15 +15,16 @@ body {
 }
 
 #main p {
-    color: #EBEBEB !important;
     font-size: 2em;
-    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.75);
 }
 
 #main h1 {
+    font-size: 3em;
+}
+
+.shadow {
     text-shadow: 0 2px 3px rgba(0, 0, 0, 0.75);
     color: #EBEBEB !important;
-    font-size: 3em;
 }
 
 #main-content {
@@ -35,7 +36,8 @@ body {
     top: 100px;
 }
 
-#cad-span {
+
+.link {
     color: white !important;
     text-decoration: underline;
     font-size: 1.2em;

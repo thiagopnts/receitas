@@ -6,6 +6,14 @@
     <link rel="stylesheet" href="/css/jasmine.css"></script>
     <script src="/js/vendor/jasmine.js"></script>
     <script src="/js/vendor/jasmine-html.js"></script>
+    <script type="text/javascript">
+    var require = {
+        baseUrl: "/",
+        waitSeconds: 15,
+        urlArgs : "v="+new Date().getTime(),
+        deps: ['spec/runner']
+    };
+    </script>
     <script src="/js/vendor/require.js" data-main="spec/runner"></script>
   </head>
   <body></body>

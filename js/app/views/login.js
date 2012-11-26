@@ -7,16 +7,16 @@ define(function(require) {
         show: true
     };
 
-    var SignupView = Backbone.View.extend({
+    var LoginView = Backbone.View.extend({
 
-        el: '#signup-modal',
+        el: '#login-modal',
 
         events: {
-            'click #signup-cancel' : '_hideModal',
-            'click #signup' : 'signup'
+            'click #login-cancel' : '_hideModal',
+            'click #login' : 'login'
         },
         initialize: function() {
-            mediator.on('signup:error', this._error, this);
+            mediator.on('login:error', this._error, this);
             mediator.on('signup:success', this._hideLoading, this);
         },
         _hideLoading: function() {
@@ -27,21 +27,21 @@ define(function(require) {
             console.log('loding.....');
         },
         _error: function() {
-            alert('pam!');
+            alert('usuario e/ou senha inválidos!');
+            this._clear();
         },
 
         _hideModal: function() {
             this.$el.modal('hide');
         },
 
-        signup: function() {
+        login: function() {
             var data = {
-                name: $('input[type=text]').val(),
-                email: $('input[type=email]').val(),
-                password: $('input[type=password]').val()
+                email: this.$el.find('input[type=email]').val(),
+                password: this.$el.find('input[type=password]').val()
             };
             this._showLoading();
-            this.model.newSignup(data);
+            this.model.doLogin(data);
         },
 
         _clear: function() {
@@ -58,5 +58,6 @@ define(function(require) {
         }
     });
 
-    return SignupView;
+    return LoginView;
 });
+

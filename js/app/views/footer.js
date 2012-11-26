@@ -6,7 +6,6 @@ define(function(require) {
         el: "footer",
         render: function() {
             this.$el.html(_.template(template));
-            console.log('ok')
         }
     });
 

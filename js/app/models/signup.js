@@ -9,6 +9,15 @@ define(function(require) {
 
     var SignupService = Backbone.Model.extend({
 
+        newSignup: function(attrs) {
+            this.set(attrs, {silent: true});
+            if(this.isValid()) {
+                mediator.trigger('signup:success');
+            } else {
+                mediator.trigger('signup:error', this.validate(attrs));
+            }
+        },
+
         validate: function(attrs) {
             if(!this._isValidName(attrs.name))
                 return "Nome inválido!";
@@ -19,7 +28,7 @@ define(function(require) {
         },
 
         _isValidName: function(name) {
-            return name && name.trim().length > 3;
+            return name && name.trim().length >= 3;
         },
 
         _isValidEmail: function(email) {

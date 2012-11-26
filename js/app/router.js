@@ -4,7 +4,8 @@ define(function(require) {
 
     var App = Backbone.Router.extend({
         routes: {
-            "": "index"
+            "": "index",
+            "cozinha": "home"
         },
         initialize: function() {
             this.index = new IndexPage();
@@ -12,6 +13,10 @@ define(function(require) {
 
         index: function() {
             this.index.render();
+        },
+
+        home: function() {
+            this.index.removeAll();
         }
     });
 

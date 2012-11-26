@@ -17,7 +17,7 @@ define(function(require) {
                 expect(this.signup.set({name: null})).toBe(false);
                 expect(this.signup.set({name: undefined})).toBe(false);
             });
-            
+
         });
 
         describe('email', function() {
