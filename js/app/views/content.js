@@ -1,4 +1,5 @@
 define(function(require) {
+    require("handlebars");
     var template = require("text!templates/content.hbs");
     var Backbone = require("backbone");
     var SignupView = require("views/signup");
@@ -14,7 +15,7 @@ define(function(require) {
 
         },
         render: function() {
-            this.$el.html(_.template(template));
+            this.$el.html(Handlebars.compile(template));
         },
 
         showSignupModal: function() {

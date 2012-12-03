@@ -18,7 +18,9 @@ requirejs.config({
         'mediator': 'mediator',
         'handlebars': '../vendor/handlebars',
         'modals': '../vendor/bootstrap-modal',
-        'cookie': '../vendor/jquery.cookie'
+        'popover': '../vendor/bootstrap-popover',
+        'cookie': '../vendor/jquery.cookie',
+        'twipsy': '../vendor/bootstrap-twipsy'
     },
     shim: {
         'models': {
@@ -39,6 +41,9 @@ requirejs.config({
         },
         'modals': {
             deps: ['jquery'],
+        },
+        'popover': {
+            deps: ['jquery', 'modals', 'twipsy']
         }
     }
 });

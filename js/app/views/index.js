@@ -13,7 +13,6 @@ define(function(require) {
             this.topbar = new Topbar();
             this.content = new Content();
             this.footer = new Footer();
-
         },
 
         removeAll: function() {

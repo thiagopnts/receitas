@@ -1,0 +1,20 @@
+<div id="recipe-modal" class="modal hide fade" role="dialog">
+    <div class="modal-header">
+        <h3>{{name}}</h3>
+        <span class="shadow">{{likes}} Likes</span>
+        <a href="javascript:void(0)">Curtir</a>
+    </div>
+    <div class="modal-body">
+        <h4>Descrição:</h4>
+        <p>{{description}}</p>
+
+        <h4>Ingredientes:</h4>
+        {{#each ingredients}}
+            <p>{{this.name}} - {{this.quantity}} </p>
+        {{/each}}
+    </div>
+    <div class="modal-footer">
+        <!--        <button class="btn success" id="recipe-ok">OK</button> -->
+    </div>
+</div>
+

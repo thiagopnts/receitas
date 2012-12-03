@@ -5,6 +5,64 @@ body {
     background-size: cover;
 }
 
+.inner {
+    background: white;
+}
+
+.recipe-box {
+    width: 400px !important;
+    height: 120px !important;
+}
+
+.mod {
+    display: none;
+    position: absolute;
+    text-align: center;
+    border: 1px solid #CCC;
+    width: 300px;
+    min-height: 250px;
+    height: auto;
+    top: 20px;
+    left: 35%;
+    background: white;
+}
+
+h2 a {
+    position: relative;
+    margin-left: 20px;
+    top: 10px;
+    color: white !important;
+}
+
+#recipe-content {
+    position: relative;
+    margin-left: 20px;
+    top: 10px;
+}
+
+#recipe-content a {
+    color: white !important;
+    text-decoration: underline;
+}
+
+.recipe-body p{
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+
+.box-shadow {
+    -webkit-box-shadow: 7px 7px 5px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    7px 7px 5px rgba(50, 50, 50, 0.75);
+    box-shadow:         7px 7px 5px rgba(50, 50, 50, 0.75);
+}
+
+.mod input {
+    position: relative;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    top: 10px;
+}
+
 .box {
     width: 800px;
     height: 350px;
@@ -14,6 +72,50 @@ body {
     background: url(../img/dotted-dark-overlay-bg.png);
 }
 
+.search {
+    width: 30%;
+    margin-top: 5%;
+    min-height: 130px;
+    height: auto;
+}
+
+.ingredient {
+    position: relative;
+    left: 65px;
+    top: 50px;
+    margin-bottom: 10px;
+}
+
+#search {
+    position: relative;
+    margin-left: 44%;
+    margin-top: 15%;
+    margin-bottom: 5%;
+}
+
+#signup-modal {
+    width: 300px !important;
+    height: 300px !important;
+    left: 700px;
+}
+
+#login-modal {
+    width: 300px;
+    left: 700px;
+}
+
+#signup-modal .modal-footer {
+    margin-top: 80px;
+}
+
+#logo {
+    position: relative;
+    width: 45%;
+    height: 90%;
+    left: 135px;
+    bottom: 40px;
+}
+
 #main p {
     font-size: 2em;
 }
@@ -21,19 +123,19 @@ body {
 #main h1 {
     font-size: 3em;
 }
-
 .shadow {
     text-shadow: 0 2px 3px rgba(0, 0, 0, 0.75);
     color: #EBEBEB !important;
 }
+
 
 #main-content {
     position: relative;
     margin: 0 auto;
     width: 750px;
     height: 200px;
-    left: 30px;
-    top: 100px;
+    left: 70px;
+    top: 50px;
 }
 
 
