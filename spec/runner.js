@@ -38,6 +38,7 @@ define(function(require) {
     require('spec/views/index_spec');
     require('spec/models/signup_spec');
     require('spec/models/user_spec');
+    require('spec/models/recipe_spec');
 
     jasmine.getEnv().addReporter(new jasmine.HtmlReporter());
     jasmine.getEnv().execute();
