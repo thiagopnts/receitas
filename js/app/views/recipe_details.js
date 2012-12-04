@@ -14,12 +14,10 @@ define(function(require) {
         },
 
         _show: function() {
-            console.log('show');
             this.$el.find('#recipe-modal').modal('show');
         },
 
         _hide: function() {
-            alert('kjkjs');
             this.$el.find('#recipe-modal').modal('hide');
         },
 
@@ -28,7 +26,7 @@ define(function(require) {
             this.$el.append(this.template({
                 name: "Feijoada Universitária",
                 likes: 10,
-                description: "Nossa mto bom",
+                preparation: "bota tudo dentro de uma panela e mistura",
                 ingredients: [{
                     name: "Feijão preto enlatado",
                     quantity: "3 latas"

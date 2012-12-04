@@ -4,6 +4,7 @@ define(function(require) {
     var Ingredients = require('collections/ingredients');
     var Ingredient = require('models/ingredient');
     var button = require('text!templates/search.hbs');
+    var ResultsView = require('views/results');
     require('popover');
 
     var SearchView = Backbone.View.extend({
@@ -13,13 +14,22 @@ define(function(require) {
 
         ingredientId: 0,
 
-        collections: new Ingredients(),
+        collection: new Ingredients(),
 
         events: {
             'keypress input[type=text]' : "addIngredient",
-            'keyup input[type=text]' : 'removeIngredient'
+            'keyup input[type=text]' : 'removeIngredient',
+            'click #search': '_search'
         },
 
+
+        initialize: function() {
+            this.results = new ResultsView();
+        },
+
+        _search: function(event) {
+            $("body").append(this.results.render().el);
+        },
 
         addIngredient: function(event) {
             var key = event.which ? event.which : event.keyCode;
@@ -55,6 +65,7 @@ define(function(require) {
             var b = $(list.get(list.index($(element)) - 1)).focus();
         },
 
+        //FIXME refactoring ftw
         render: function() {
             $('.hero').html(this.el);
             $('.hero>.search').append($('<section class="ingredients">'));

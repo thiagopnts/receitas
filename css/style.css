@@ -14,6 +14,20 @@ body {
     height: 120px !important;
 }
 
+.result {
+    position: relative;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    height: auto;
+}
+
+.recipe-box {
+    position: relative;
+    top: 30px !important;
+    bottom: 40px !important;
+    margin-top: 15px !important;
+}
+
 .mod {
     display: none;
     position: absolute;
@@ -97,6 +111,18 @@ h2 a {
     width: 300px !important;
     height: 300px !important;
     left: 700px;
+}
+
+#new-recipe {
+    position: relative;
+    float: right;
+    color: white !important;
+    display: block;
+    right: 380px;
+    top: 50px;
+    width: 100px;
+    height: 30px;
+    text-align: center;
 }
 
 #login-modal {

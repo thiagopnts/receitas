@@ -9,7 +9,7 @@ define(function(require) {
     var Ingredients = Backbone.Collection.extend({model: Ingredient});
     var table = require('text!templates/user-table.hbs');
 
-    var ProjetoView = Backbone.View.extend({
+    var AdminView = Backbone.View.extend({
         el: '.hero',
         users: new Users(),
         recipes: new Recipes(),
@@ -77,5 +77,5 @@ define(function(require) {
         }
     });
 
-    return ProjetoView;
+    return AdminView;
 });

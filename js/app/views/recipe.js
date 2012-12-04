@@ -22,7 +22,7 @@ define(function(require) {
         },
 
         render: function() {
-            this.$el.append(this.template({name: "Feijoada Universitária", likes: 10, description: "Feijoada com feijão enlatado deliciosa!!!!"}));
+            this.$el.append(this.template({name: "Feijoada Universitária", likes: 10, preparation: "Feijoada com feijão enlatado deliciosa!!!!"}));
             return this;
         }
     });

@@ -2,19 +2,21 @@ define(function(require) {
     var Backbone = require('backbone');
     var IndexPage = require('views/index');
     var SearchView = require('views/search');
-    var ProjetoView = require('views/projeto');
+    var AdminView = require('views/admin');
     var RecipeView = require('views/recipe');
+    var HomePageView = require('views/home');
+
 
     var App = Backbone.Router.extend({
         routes: {
             "": "index",
             "cozinha": "home",
-            "projeto": "projeto"
+            "admin": "admin"
         },
         initialize: function() {
             this.index = new IndexPage();
-            this.home = new SearchView();
-            this.projeto = new ProjetoView();
+            this.home = new HomePageView();
+            this.admin = new AdminView();
             this.recipe = new RecipeView();
         },
 
@@ -25,13 +27,11 @@ define(function(require) {
         home: function() {
             this.index.removeAll();
             this.home.render();
-            //cuidado :
-            $('.hero').append(this.recipe.render().el);
         },
 
-        projeto: function() {
+        admin: function() {
             this.index.removeAll();
-            this.projeto.render();
+            this.admin.render();
         }
 
     });
