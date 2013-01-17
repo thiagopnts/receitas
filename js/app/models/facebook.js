@@ -1,13 +1,13 @@
 define(function(require) {
     var Backbone = require('backbone');
-
+    var mediator = require('mediator');
     var FacebookService = Backbone.Model.extend({
         login: function(options) {
             console.log("FacebookService#login");
             var _service = this;
 
             this._onALWAYS = function() {
-                options.after && options.after();
+                return options.after && options.after();
             };
 
             this._onERROR = function() {
@@ -19,12 +19,10 @@ define(function(require) {
             };
 
             this._getuserdata = function(callback) {
-                FB.api('/me?fields=third_party_id,email,name', function(response) {
+                FB.api('/me?fields=picture,third_party_id,email,name', function(response) {
                     if(!response || response.error) {
                         callback(true, response.error);
                     } else {
-                        console.log('success username:' + response['name']);
-                        Backbone.history.navigate("cozinha", {trigger: true});
                         callback(null, response);
                     }
                 });
@@ -38,7 +36,8 @@ define(function(require) {
                         if(error) {
                             console.log(response);
                         } else {
-                            console.log("No errors", response);
+                            console.log(response);
+                            mediator.trigger('login:success', {email: response['email'], id: response['id'], name: response['name'], url: response['picture'].data.url});
                         }
 
                     });

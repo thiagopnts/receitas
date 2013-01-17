@@ -15,7 +15,6 @@ define(function(require) {
                 mediator.trigger('login:success', {email: 'admin', id: 1, name: 'Administrador'});
             else
                 mediator.trigger('login:error');
-
         }
     });
     return LoginService;

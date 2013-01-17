@@ -4,6 +4,7 @@ define(function(require) {
     var Content = require("views/content");
     var Footer = require("views/footer");
     var User = require('models/user');
+    var Storage = require('models/storage');
     var mediator = require('mediator');
     require('modals');
 
@@ -23,7 +24,7 @@ define(function(require) {
 
         kitchen: function(values) {
             var user = User.getInstance();
-            user.set(values);
+            Storage.setCurrentUser(user.set(values));
             Backbone.history.navigate('cozinha', {trigger: true});
         },
 

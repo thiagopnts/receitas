@@ -1,10 +1,11 @@
 define(function(require) {
-    var Backbone = require('backbone');
+    var Backbone       = require('backbone');
     var IngredientView = require('views/ingredient');
-    var Ingredients = require('collections/ingredients');
-    var Ingredient = require('models/ingredient');
-    var button = require('text!templates/search.hbs');
-    var ResultsView = require('views/results');
+    var Ingredients    = require('collections/ingredients');
+    var Ingredient     = require('models/ingredient');
+    var button         = require('text!templates/search.hbs');
+    var ResultsView    = require('views/results');
+    var WelcomeView    = require('views/welcome');
     require('popover');
 
     var SearchView = Backbone.View.extend({
@@ -25,6 +26,7 @@ define(function(require) {
 
         initialize: function() {
             this.results = new ResultsView();
+            this.welcome = new WelcomeView();
         },
 
         _search: function(event) {
@@ -68,6 +70,7 @@ define(function(require) {
         //FIXME refactoring ftw
         render: function() {
             $('.hero').html(this.el);
+            this.$el.before(this.welcome.render().el);
             $('.hero>.search').append($('<section class="ingredients">'));
             new IngredientView().render().$el.attr({id: 'ingredient' + this.ingredientId, 'data-original-title': 'Dica!', 'data-content': 'Aperte ENTER para ir adicionando novos ingredientes!'}).focus().popover({trigger: 'manual'}).popover('show');
             this.$el.append(button);

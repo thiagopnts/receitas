@@ -11,11 +11,12 @@ define(function(require) {
             var name = this.storage.getItem('name');
             var email = this.storage.getItem('email');
             var id = this.storage.getItem('id');
+            var url = this.storage.getItem('url');
             if (name && email && id) {
                // var user = User.getInstance();
                // user.set({name: name, email: email, id: id});
                // return user;
-                return {name: name, email: email, id: id};
+                return {name: name, email: email, id: id, url: url};
             } else {
                 return null;
             }
@@ -26,6 +27,7 @@ define(function(require) {
             this.storage.setItem('name', user.get('name'));
             this.storage.setItem('email', user.get('email'));
             this.storage.setItem('id', user.get('id'));
+            this.storage.setItem('url', user.get('url'));
         },
 
         clear: function() {

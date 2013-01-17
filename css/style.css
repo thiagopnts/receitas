@@ -184,3 +184,41 @@ h2 a {
     bottom: 30px;
 }
 
+.welcome img {
+    position: relative;
+    top: 30px;
+    width: 60px;
+    height: 60px;
+    -webkit-border-radius: 150px;
+    -moz-border-radius: 150px;
+    border-radius: 150px;
+    background: url(../img/profile-picture-default.jpg) no-repeat;
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    display: inline;
+}
+
+.welcome center:hover {
+    -webkit-transform: scale(1.01);
+    -moz-transform: scale(1.01);
+    -ms-transform: scale(1.01);
+    -o-transform: scale(1.01);
+    transform: scale(1.01);
+    -webkit-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    -ms-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+    -webkit-backface-visibility: hidden;
+}
+
+.welcome h3 {
+    position: relative;
+    top: 10px;
+    color: white !important;
+    display: inline;
+    bottom: 25px;
+    margin-left: 1%;
+}
+
