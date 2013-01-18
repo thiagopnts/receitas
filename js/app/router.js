@@ -30,8 +30,7 @@ define(function(require) {
         },
 
         admin: function() {
-            this.index.removeAll();
-            this.admin.render();
+            $("body").html(this.admin.render().el);
         }
 
     });
