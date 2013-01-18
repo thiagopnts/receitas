@@ -16,7 +16,7 @@ define(function(require) {
                // var user = User.getInstance();
                // user.set({name: name, email: email, id: id});
                // return user;
-                return {name: name, email: email, id: id, url: url};
+                return {name: name, email: email, id: id, url: url === 'undefined' ? undefined : url};
             } else {
                 return null;
             }

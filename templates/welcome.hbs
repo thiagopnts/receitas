@@ -1,4 +1,8 @@
 <center>
-  <img src="{{url}}" alt="">
+  {{#if url}}
+    <img src="{{url}}" alt="profile">
+  {{else}}
+    <img src="img/profile-picture-default.jpg" alt="profile">
+  {{/if}}
   <h3 class="shadow">E aí {{name}}, vai querer o que hoje?</h3>
 </center>
