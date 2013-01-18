@@ -19,7 +19,7 @@ define(function(require) {
             }
             return this.user;
         }
-    }
+    };
 
     return User;
 

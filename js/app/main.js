@@ -20,7 +20,8 @@ requirejs.config({
         'modals': '../vendor/bootstrap-modal',
         'popover': '../vendor/bootstrap-popover',
         'cookie': '../vendor/jquery.cookie',
-        'twipsy': '../vendor/bootstrap-twipsy'
+        'twipsy': '../vendor/bootstrap-twipsy',
+        'storage': '../vendor/backbone.localStorage-min'
     },
     shim: {
         'models': {
@@ -40,7 +41,7 @@ requirejs.config({
             exports: 'Backbone'
         },
         'modals': {
-            deps: ['jquery'],
+            deps: ['jquery']
         },
         'popover': {
             deps: ['jquery', 'modals', 'twipsy']
