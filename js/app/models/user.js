@@ -1,15 +1,7 @@
 define(function(require) {
     var mediator = require('mediator');
     var Storage = require('models/storage');
-
-    var UserModel = Backbone.Model.extend({
-        defaults: {
-            logged: false
-        },
-        isLogged: function() {
-            return this.logged === true;
-        }
-    });
+    var UserModel = require('models/_user');
 
     var User = {
         getInstance: function() {
