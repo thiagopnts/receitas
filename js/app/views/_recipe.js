@@ -1,18 +1,11 @@
 define(function(require) {
-  var Backbone = require('backbone');
+
+  var CRUDView = require('views/crud_view');
   var template = require('text!templates/_recipe.hbs');
 
-  var RecipeView = Backbone.View.extend({
-    events: {
-      'click a': 'deleteRecipe'
-    },
+  var RecipeView = CRUDView.extend({
 
     template: Handlebars.compile(template),
-
-    deleteRecipe: function() {
-      this.model.destroy();
-      this.remove();
-    },
 
     render: function() {
       this.$el.append(this.template({
@@ -23,8 +16,6 @@ define(function(require) {
 
       return this;
     }
-
-
 
   });
 

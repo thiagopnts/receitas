@@ -3,6 +3,7 @@ define(function(require) {
     var Modal = require('views/modal');
     var UserView = require('views/user');
     var RecipeView = require('views/_recipe');
+    var IngredientView = require('views/_ingredient');
     var User = require('models/_user');
     var ListView = require('views/list_view');
     var Users = require('collections/users');
@@ -14,6 +15,7 @@ define(function(require) {
     var template = require('text!templates/admin.hbs');
     var usersTemplate = require('text!templates/users.hbs');
     var recipesTemplate = require('text!templates/recipes.hbs');
+    var ingredientsTemplate = require('text!templates/ingredients.hbs');
 
     var AdminView = Backbone.View.extend({
         el: template,
@@ -23,7 +25,8 @@ define(function(require) {
             'click #create-recipe' : 'showRecipeModal',
             'click #new-ingredient' : 'showIngredientModal',
             'click #list-users': 'showUsers',
-            'click #list-recipes': 'showRecipes'
+            'click #list-recipes': 'showRecipes',
+            'click #list-ingredients': 'showIngredients'
         },
 
         initialize: function(options) {
@@ -35,18 +38,25 @@ define(function(require) {
             this.recipes = new Recipes();
             this.recipes.fetch();
             this.ingredients = new Ingredients();
+            this.ingredients.fetch();
             this.listUsers = new ListView({
                 header: "Usuários Cadastrados",
                 subview: UserView,
                 collection: this.users,
                 template: usersTemplate
             });
-            console.log(RecipeView);
             this.listRecipes = new ListView({
                 header: "Receitas Cadastradas",
                 subview: RecipeView,
                 collection: this.recipes,
                 template: recipesTemplate
+            });
+
+            this.listIngredients = new ListView({
+                header: "Ingredientes Cadastrados",
+                subview: IngredientView,
+                collection: this.ingredients,
+                template: ingredientsTemplate
             });
 
         },
@@ -64,26 +74,36 @@ define(function(require) {
         },
 
         createUser: function(event) {
-            this.users.add(new User({
+            this.users.create(new User({
                 id: _.uniqueId(), name: $('#name').val(), email: $('#email').val(), password: $('#password').val(), pic: undefined
             }));
+            this._clear(['#name', '#email', '#password']);
             this.userModal.hide();
         },
 
         createRecipe: function(event) {
-            this.recipes.add({
+            this.recipes.create({
                 id: _.uniqueId(),
                 name: $("#recipe-name").val(),
                 description: $("#recipe-description").val(),
                 preparation: $("#recipe-preparation").val()
             });
+            this._clear(['#recipe-name', '#recipe-description', 'recipe-preparation']);
             this.recipeModal.hide();
         },
 
+        _clear: function(ids) {
+            _.each(ids, function(id) {
+                $(id).val('');
+            });
+        },
+
         createIngredient: function(event) {
-            this.ingredients.add({
+            this.ingredients.create({
+                id: _.uniqueId(),
                 name: $("#ingredient-name").val()
             });
+            this._clear(['#ingredient-name']);
             this.ingredientModal.hide();
         },
 
@@ -93,6 +113,10 @@ define(function(require) {
 
         showRecipes: function() {
             this.listRecipes.show();
+        },
+
+        showIngredients: function() {
+            this.listIngredients.show();
         }
 
     });
