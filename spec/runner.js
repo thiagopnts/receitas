@@ -17,13 +17,13 @@ require.config({
     shim: {
         'cookie': {
             deps: ['jquery']
-        },        
+        },
         'backbone': {
             deps: ['underscore', 'jquery'],
             exports: 'Backbone'
         },
         'modals': {
-            deps: ['jquery'],
+            deps: ['jquery']
         },
         'jquery': {
             exports: '$'

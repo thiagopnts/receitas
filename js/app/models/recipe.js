@@ -3,32 +3,29 @@ define(function(require){
 	var Backbone = require('backbone');
 
 	var Recipe = Backbone.Model.extend({
+        defaults: {
+            'likes': []
+        },
 
         validate: function(attrs) {
 			if(!this._isValidName(attrs.name))
                 return "Nome inválido!";
-            else if(attrs.name.trim().length < 3 || attrs.name.trim().length > 30)
-                return "A quantidade de caracteres devem ser entre 3 e 30";
             else if(!this._isValidPreparation(attrs.preparation))
-                return "Dados incorretos!";
-			else if(attrs.preparation.trim().length < 10 || attrs.preparation.trim().length > 2000)
-                return "A quantidade de caracteres devem ser entre 10 e 2000";
+                return "Preparação inválida!";
             else if(!this._isValidDescription(attrs.description))
-                return "Dados incorretos!";
-			else if(attrs.description.trim().length < 10 || attrs.description.trim().length > 1000)
-                return "A quantidade de caracteres devem ser entre 10 e 1000";
+                return "Descrição inválida!";
         },
 
         _isValidName: function(name) {
-            return name;
+            return name && name.trim().length > 3 && name.trim().length <= 30;
         },
 
         _isValidPreparation: function(preparation) {
-            return preparation;
+            return preparation && preparation.trim().length > 10 && preparation.trim().length < 2000;
         },
 
         _isValidDescription: function(description) {
-            return description;
+            return description && description.trim().length > 10 && description.trim().length < 1000;
         }
 
 	});

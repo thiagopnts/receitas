@@ -1,79 +1,45 @@
 define(function(require) {
 	describe('Recipe', function(){
-		
+
 		var Recipe = require('models/recipe');
 
 		beforeEach(function(){
 			this.recipe = new Recipe();
+			this.validAttrs = {
+				name: 'Valid Name',
+				preparation: 'Valid preparation',
+				description: 'Valid description'
+			};
 		});
 
-			describe('name of recipe should', function(){
+			describe('recipe name should', function(){
 
 				it ('contain between 3 and 30 characters', function(){
-					/*expect(this.recipe.set({name: 'My Recipe'})).toBe(true);*/
-					expect(this.recipe.set({name: 'My'})).toBe(false);								
-				});						
+					this.recipe.set(this.validAttrs);
+					expect(this.recipe.validate(this.recipe.attributes)).toBe(undefined);
+					this.validAttrs.name = "a";
+					this.recipe.set(this.validAttrs);
+					expect(this.recipe.validate(this.recipe.attributes)).toEqual("Nome inválido!");
+				});
 
-				it ('not contain space only', function(){			
-					expect(this.recipe.set({name: '    '})).toBe(false);									
-				});		
-
-				it('be neither null or undefined', function() {
-	                expect(this.recipe.set({name: null})).toBe(false);
-	                expect(this.recipe.set({name: undefined})).toBe(false);
-	            });	
-				
 			});
 
-			describe('method of preparation should', function(){
+			describe('recipe preparation should', function() {
+        it('contain between 10 and 2000 length', function() {
+          this.validAttrs.preparation = "a";
+          this.recipe.set(this.validAttrs);
+          expect(this.recipe.validate(this.recipe.attributes)).toEqual("Preparação inválida!");
+        });
+			});
 
-				it ('contain between 10 and 2000 characters', function(){
-					/*expect(this.recipe.set({preparation: 'Modo de preparo XXX'})).not.toBe(false);*/
-					expect(this.recipe.set({preparation: 'modo'})).toBe(false);								
-				});						
+      describe('recipe description should', function() {
+        it('contain between 10 and 2000 length', function() {
+          this.validAttrs.description = "a";
+          this.recipe.set(this.validAttrs);
+          expect(this.recipe.validate(this.recipe.attributes)).toEqual("Descrição inválida!");
+        });
+      });
 
-				it ('not contain space only', function(){			
-					expect(this.recipe.set({preparation: '    '})).toBe(false);									
-				});		
 
-				it('be neither null or undefined', function() {
-	                expect(this.recipe.set({preparation: null})).toBe(false);
-	                expect(this.recipe.set({preparation: undefined})).toBe(false);
-	            });
-		});
-
-			describe('description should', function(){
-
-				it ('contain between 10 and 1000 characters', function(){
-					/*expect(this.recipe.set({description: 'Modo de preparo XXX'})).not.toBe(false);*/
-					expect(this.recipe.set({description: 'Desc1'})).toBe(false);
-				});						
-
-				it ('not contain space only', function(){			
-					expect(this.recipe.set({description: '    '})).toBe(false);									
-				});		
-
-				it('be neither null or undefined', function() {
-	                expect(this.recipe.set({description: null})).toBe(false);
-	                expect(this.recipe.set({description: undefined})).toBe(false);
-	            });
-		});
-
-			describe('description should', function(){
-
-				it ('contain between 10 and 1000 characters', function(){
-					/*expect(this.recipe.set({description: 'Modo de preparo XXX'})).not.toBe(false);*/
-					expect(this.recipe.set({description: 'Desc1'})).toBe(false);
-				});						
-
-				it ('not contain space only', function(){			
-					expect(this.recipe.set({description: '    '})).toBe(false);									
-				});		
-
-				it('be neither null or undefined', function() {
-	                expect(this.recipe.set({description: null})).toBe(false);
-	                expect(this.recipe.set({description: undefined})).toBe(false);
-	            });
-		});
 	});
 });
