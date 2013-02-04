@@ -5,17 +5,27 @@ define(function(require) {
 
         beforeEach(function() {
             this.signup = new Signup();
+            this.attrs = {
+                name: "Valid Name",
+                email: "valid@email.com",
+                password: "password"
+            };
         });
 
         describe('name should', function() {
 
             it('be > 3', function() {
-                expect(this.signup.set({name: 'a'})).toBe(false);
+                this.signup.set(this.attrs);
+                expect(this.signup.validate(this.signup.attributes)).toEqual(undefined);
             });
 
             it('be neither null or undefined', function() {
-                expect(this.signup.set({name: null})).toBe(false);
-                expect(this.signup.set({name: undefined})).toBe(false);
+                this.attrs.name = null;
+                this.signup.set(this.attrs);
+                expect(this.signup.validate(this.signup.attributes)).toEqual("Nome inválido!");
+                this.attrs.name = undefined;
+                this.signup.set(this.attrs);
+                expect(this.signup.validate(this.signup.attributes)).toEqual("Nome inválido!");
             });
 
         });
@@ -23,26 +33,18 @@ define(function(require) {
         describe('email', function() {
 
             it('should be a valid one', function() {
-                var attrs = {name: 'thiago', email: 'invalid', password: 'password'};
-                expect(this.signup.set(attrs)).toBe(false);
-                expect(this.signup._isValidEmail('invalid')).toBe(false);
-                expect(this.signup.validate(attrs)).toBe("E-mail inválido!");
-                expect(this.signup._isValidEmail('valid@email.com')).toBe(true);
-                attrs.email = 'valid@email.com';
-                expect(!!this.signup.set(attrs)).toBe(true);
+                this.attrs.email = "invalid";
+                this.signup.set(this.attrs);
+                expect(this.signup.validate(this.signup.attributes)).toEqual("E-mail inválido!");
             });
 
         });
 
         describe('password', function() {
             it('should be a valid one', function() {
-                var attrs = {name: 'thiago', email: 'valid@email.com', password: ''};
-                expect(this.signup.set(attrs)).toBe(false);
-                expect(this.signup._isValidPassword('no')).toBe(false);
-                expect(this.signup.validate(attrs)).toBe("Sua senha deve conter mais de 5 caracteres!");
+                this.attrs.password = 'a';
+                expect(this.signup.validate(this.attrs)).toBe("Sua senha deve conter mais de 5 caracteres!");
                 expect(this.signup._isValidPassword('password')).toBe(true);
-                attrs.password = 'password';
-                expect(!!this.signup.set(attrs)).toBe(true);
             });
         });
     });
