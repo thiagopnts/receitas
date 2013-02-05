@@ -12,7 +12,8 @@ require.config({
         'text': '../vendor/text',
         'modals': '../vendor/bootstrap-modal',
         'handlebars': '../vendor/handlebars',
-        'cookie': '../vendor/jquery.cookie'
+        'cookie': '../vendor/jquery.cookie',
+        'storage': '../vendor/backbone.localStorage-min'
     },
     shim: {
         'cookie': {

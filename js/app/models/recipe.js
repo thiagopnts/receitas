@@ -1,10 +1,35 @@
 define(function(require){
 
-	var Backbone = require('backbone');
+	var Backbone    = require('backbone'),
+        Ingredients = require('collections/ingredients');
 
 	var Recipe = Backbone.Model.extend({
         defaults: {
-            'likes': []
+            likes: [],
+            ingredients: []
+        },
+
+        likeIt: function(userId) {
+            if(!_.contains(this.get('likes'), userId)) {
+                var clone = _.clone(this.get('likes'));
+                clone.push(userId);
+                this.set('likes', clone);
+            }
+        },
+
+        addIngredient: function(arg) {
+            if(arg instanceof Array) {
+                if(this.get('ingredients').length > 0) {
+                    //Merges the current ingredients with the new array.
+                    this.set('ingredients', _.union(_.clone(this.get('ingredients')), arg));
+                } else
+                    this.set('ingredients', arg);
+            }
+            else {
+                var ingredients = _.clone(this.get('ingredients'));
+                ingredients.push(arg);
+                this.set('ingredients', ingredients);
+            }
         },
 
         validate: function(attrs) {
