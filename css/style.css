@@ -100,6 +100,33 @@ h2 a {
     margin-bottom: 10px;
 }
 
+.badge {
+    padding: 6px 8px 4px;
+    display: table;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+    font-size: 15px;
+}
+
+span a, span a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.error {
+    border-color: #dd3c10;
+}
+
+input.error:focus  {
+  border-color: #ad2f0d;
+  -webkit-box-shadow: 0 0 6px #f37f60;
+  -moz-box-shadow: 0 0 6px #f37f60;
+  box-shadow: 0 0 6px #f37f60;
+}
+
+    
+
 #search {
     position: relative;
     margin-left: 44%;

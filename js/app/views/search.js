@@ -20,7 +20,8 @@ define(function(require) {
         events: {
             'keypress input[type=text]' : "addIngredient",
             'keyup input[type=text]' : 'removeIngredient',
-            'click #search': '_search'
+            'click #search': '_search',
+            'click span' : 'removeTag'
         },
 
 
@@ -33,38 +34,56 @@ define(function(require) {
             $("body").append(this.results.render().el);
         },
 
+        _buildTag: function(el) {
+            var content = $(el).val();
+            var escaped = $('<span class="label success ingredient badge">').text(content);
+            return escaped.html( '<a href="javascript:void(0);">' + escaped.text() + ' &times</a>');
+        },
+
+        removeTag: function(event) {
+            $(event.target).parent().remove();
+        },
+
         addIngredient: function(event) {
             var key = event.which ? event.which : event.keyCode;
+            var target = $(event.target);
+            target.removeClass('error');
             if(key === 13) {
-                this.$el.find('.hero>.search>.ingredients').append(new IngredientView()
-                                .render()
-                                .$el
-                                .attr('id', 'ingredient' + this.ingredientId));
-                $('#ingredient' + this.ingredientId).focus();
-                this.ingredientId++;
-                $("#ingredient0").popover('hide');
+                if(target.val().trim().length > 2) {
+                    this.$el.find('.hero>.search>.ingredients').append(new IngredientView()
+                                    .render()
+                                    .$el
+                                    .attr('id', 'ingredient' + this.ingredientId));
+                    $('#ingredient' + this.ingredientId).focus();
+                    this.ingredientId++;
+                    $("#ingredient0").popover('hide');
+                    target.replaceWith(this._buildTag(target));
+                } else {
+                    target.addClass('error');
+                }
             }
         },
 
         removeIngredient: function(event) {
-            var key = event.which || event.keyCode; 
+            var key = event.which || event.keyCode;
+            var target = $(event.target);
             if(key === 8 && this._isEmpty(event.target) && !this._isUnique()) {
-                this._focusUp(event.target);
-                $(event.target).remove();
+                target.removeClass('error');
+                this._removeAbove(target);
             }
         },
 
         _isUnique: function() {
-            return $(".ingredients input[type=text]").length <= 1;
+            return $('.badge').length === 0 && $('input[type=text]').length === 1;
         },
 
         _isEmpty: function(element) {
             return $(element).val().length === 0;
         },
 
-        _focusUp: function(element) {
-            var list = $('.ingredients input[type=text]');
-            var b = $(list.get(list.index($(element)) - 1)).focus();
+        _removeAbove: function(element) {
+            var list = $('.ingredients').children().not("button");
+            $(list.get(list.index($(element)) - 1)).remove();
         },
 
         //FIXME refactoring ftw

@@ -2783,7 +2783,6 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
   font-size: 8.25px;
   font-weight: bold;
   color: #ffffff;
-  text-transform: uppercase;
   white-space: nowrap;
   background-color: #999999;
   -webkit-border-radius: 3px;
