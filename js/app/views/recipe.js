@@ -2,6 +2,7 @@ define(function(require) {
     var Backbone = require('backbone');
     var template = require('text!templates/recipe.hbs');
     var RecipeDetails = require('views/recipe_details');
+    var User = require('models/storage');
 
     var RecipeView = Backbone.View.extend({
 
@@ -13,16 +14,20 @@ define(function(require) {
         template: Handlebars.compile(template),
 
         _like: function(event) {
-            alert('like');
+            this.model.likeIt(User.getCurrentUser().id);
+            this.model.save();
+            console.log(this.model.get('likes').length);
+            console.log('like');
+            this.render();
         },
 
         _showDetails: function(event) {
             //new RecipeDetails({model: this.model})
-            this.details = new RecipeDetails().render();
+            this.details = new RecipeDetails({model: this.model}).render();
         },
 
         render: function() {
-            this.$el.append(this.template({name: "Feijoada Universitária", likes: 10, preparation: "Feijoada com feijão enlatado deliciosa!!!!"}));
+            this.$el.html(this.template({name: this.model.get('name'), likes: this.model.get('likes').length, preparation: this.model.get('preparation')}));
             return this;
         }
     });

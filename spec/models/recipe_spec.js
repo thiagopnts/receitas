@@ -65,33 +65,29 @@ define(function(require) {
     it('can add as an array of ingredients', function() {
       this.recipe.addIngredient([
       {
-        name: "Feijão",
-        quantity: "1 KG"
+        name: "Feijão"
       },
       {
-        name: "Arroz",
-        quantity: "meio quilo"
+        name: "Arroz"
       }
         ]);
       expect(this.recipe.get('ingredients').length).toEqual(2);
     });
 
     it('can be added individually', function() {
-      this.recipe.addIngredient({name: "Macarrão", quantity: "2 xícaras"});
-      this.recipe.addIngredient({name: "Molho de tomate", quantity: "1 pacote"});
+      this.recipe.addIngredient({name: "Macarrão"});
+      this.recipe.addIngredient({name: "Molho de tomate"});
       expect(this.recipe.get('ingredients').length).toEqual(2);
     });
 
     it('merges current ingredients to new ones', function() {
-      this.recipe.addIngredient({name: "Macarrão", quantity: "2 xícaras"});
+      this.recipe.addIngredient({name: "Macarrão"});
       this.recipe.addIngredient([
       {
-        name: "Feijão",
-        quantity: "1 KG"
+        name: "Feijão"
       },
       {
-        name: "Arroz",
-        quantity: "meio quilo"
+        name: "Arroz"
       }
         ]);
       expect(this.recipe.get('ingredients').length).toEqual(3);

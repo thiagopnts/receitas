@@ -1,6 +1,7 @@
 define(function(require) {
   var Backbone = require("backbone");
   var template = require('text!templates/modal.hbs');
+  require('popover');
 
   var config = {
     keyboard: true,
@@ -30,6 +31,7 @@ define(function(require) {
     },
 
     hide: function() {
+      this.$el.find('input[data-content]').popover('hide');
       this.$el.modal('hide');
     },
 
@@ -38,6 +40,10 @@ define(function(require) {
     },
 
     render: function() {
+      $(document).bind('hide', function() {
+        console.log('here');
+        console.log($('input[data-content]').popover('hide'));
+      });
       this.$el.modal(config);
       return this;
     }

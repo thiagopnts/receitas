@@ -10,12 +10,12 @@ define(function(require) {
 
         initialize: function() {
             this.search = new SearchView();
-            this.results = new ResultsView();
+            // this.results = new ResultsView();
         },
 
         render: function() {
             this.search.render();
-            this.$el.append(this.results.render().el);
+            // this.$el.append(this.results.render().el);
         }
     });
 

@@ -24,18 +24,10 @@ define(function(require) {
         render: function() {
             //this.$el.append(this.template(this.model));
             this.$el.append(this.template({
-                name: "Feijoada Universitária",
-                likes: 10,
-                preparation: "bota tudo dentro de uma panela e mistura",
-                ingredients: [{
-                    name: "Feijão preto enlatado",
-                    quantity: "3 latas"
-                },
-                {
-                    name: "Ervilha enlatada",
-                    quantity: "1 lata"
-                }
-                ]
+                name: this.model.get('name'),
+                likes: this.model.get('likes').length,
+                preparation: this.model.get('preparation'),
+                ingredients: this.model.get('ingredients')
             }));
             this.$el.find("#recipe-modal").modal(options);
 

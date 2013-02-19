@@ -3,6 +3,7 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    overflow-y: scroll;
 }
 
 .inner {
@@ -26,6 +27,14 @@ body {
     top: 30px !important;
     bottom: 40px !important;
     margin-top: 15px !important;
+}
+
+.centered {
+    position: relative;
+    margin: 0 auto;
+    color: white;
+    left: 450px;
+    top: 50px;
 }
 
 .mod {
@@ -243,9 +252,8 @@ input.error:focus  {
 .welcome h3 {
     position: relative;
     top: 10px;
-    color: white !important;
+    color: white;
     display: inline;
     bottom: 25px;
     margin-left: 1%;
 }
-

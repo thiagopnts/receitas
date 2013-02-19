@@ -16,6 +16,7 @@ define(function(require) {
     var usersTemplate = require('text!templates/users.hbs');
     var recipesTemplate = require('text!templates/recipes.hbs');
     var ingredientsTemplate = require('text!templates/ingredients.hbs');
+    require('popover');
 
     var AdminView = Backbone.View.extend({
         el: template,
@@ -67,6 +68,13 @@ define(function(require) {
 
         showRecipeModal: function(event) {
             this.recipeModal.show();
+            this.recipeModal.$el.find('#recipe-ingredients');
+            var that = this;
+            setTimeout(function() {
+                that.recipeModal.$el.find('#recipe-ingredients').popover({trigger: 'manual'}).popover('show');
+                that.recipeModal.$el.css({'z-index': 800});
+                $('.modal-backdrop').css({'z-index': 700});
+            }, 1000);
         },
 
         showIngredientModal: function(event) {
@@ -82,13 +90,15 @@ define(function(require) {
         },
 
         createRecipe: function(event) {
+            var ingredients = $('#recipe-ingredients').val().split(',');
             this.recipes.create({
                 id: _.uniqueId(),
                 name: $("#recipe-name").val(),
                 description: $("#recipe-description").val(),
-                preparation: $("#recipe-preparation").val()
+                preparation: $("#recipe-preparation").val(),
+                ingredients: ingredients
             });
-            this._clear(['#recipe-name', '#recipe-description', 'recipe-preparation']);
+            this._clear(['#recipe-name', '#recipe-description', '#recipe-preparation']);
             this.recipeModal.hide();
         },
 

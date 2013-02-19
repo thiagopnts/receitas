@@ -1,12 +1,13 @@
 define(function(require) {
-    var Backbone       = require('backbone');
-    var IngredientView = require('views/ingredient');
-    var Ingredients    = require('collections/ingredients');
-    var Ingredient     = require('models/ingredient');
-    var button         = require('text!templates/search.hbs');
-    var ResultsView    = require('views/results');
-    var WelcomeView    = require('views/welcome');
     require('popover');
+    var Backbone       = require('backbone'),
+        IngredientView = require('views/ingredient'),
+        Ingredients    = require('collections/ingredients'),
+        Ingredient     = require('models/ingredient'),
+        button         = require('text!templates/search.hbs'),
+        ResultsView    = require('views/results'),
+        WelcomeView    = require('views/welcome'),
+        Recipes        = require('collections/recipes');
 
     var SearchView = Backbone.View.extend({
         tagName: "section",
@@ -26,12 +27,22 @@ define(function(require) {
 
 
         initialize: function() {
-            this.results = new ResultsView();
+            this.recipes = new Recipes();
+            this.recipes.fetch();
             this.welcome = new WelcomeView();
         },
 
         _search: function(event) {
-            $("body").append(this.results.render().el);
+            $("#ingredient0").popover('hide');
+            var queries = [];
+            _.each($('.ingredients .label'), function(el) {
+                queries.push($(el).text().replace(/×/, '').trim());
+            });
+            if($('input[type=text]').first().val() !== '') {
+                queries.push($('input[type=text]').first().val());
+            }
+            this.results = new ResultsView({collection: this.recipes, queries: queries});
+            $("#results").html(this.results.render().el);
         },
 
         _buildTag: function(el) {
@@ -67,6 +78,7 @@ define(function(require) {
         removeIngredient: function(event) {
             var key = event.which || event.keyCode;
             var target = $(event.target);
+            console.log(this._isUnique());
             if(key === 8 && this._isEmpty(event.target) && !this._isUnique()) {
                 target.removeClass('error');
                 this._removeAbove(target);
@@ -74,7 +86,7 @@ define(function(require) {
         },
 
         _isUnique: function() {
-            return $('.badge').length === 0 && $('input[type=text]').length === 1;
+            return $('.badge').length === 0 && $('.ingredient').not('.badge').length === 1;
         },
 
         _isEmpty: function(element) {
@@ -93,6 +105,7 @@ define(function(require) {
             $('.hero>.search').append($('<section class="ingredients">'));
             new IngredientView().render().$el.attr({id: 'ingredient' + this.ingredientId, 'data-original-title': 'Dica!', 'data-content': 'Aperte ENTER para ir adicionando novos ingredientes!'}).focus().popover({trigger: 'manual'}).popover('show');
             this.$el.append(button);
+            $('body').append('<div id="results">');
             this.ingredientId++;
 
             return this;
